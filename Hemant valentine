@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Ananya 💖</title>
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #ff005d, #ff9a9e);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white;
+  text-align: center;
+}
+
+.card {
+  background: rgba(0,0,0,0.35);
+  padding: 30px;
+  border-radius: 25px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.5);
+  animation: fadeIn 2s ease;
+  max-width: 450px;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+.glow {
+  color: #ffd1dc;
+  text-shadow: 0 0 10px #fff, 0 0 20px pink, 0 0 30px hotpink;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 5px #fff; }
+  to { text-shadow: 0 0 25px hotpink; }
+}
+
+.photos img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin: 10px;
+  border: 3px solid white;
+  object-fit: cover;
+}
+
+button {
+  padding: 12px 28px;
+  margin: 10px;
+  border-radius: 30px;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.yes {
+  background: #ff3366;
+  color: white;
+}
+
+.no {
+  background: #ddd;
+  color: black;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+.heart {
+  position: absolute;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(100vh); opacity: 1; }
+  to { transform: translateY(-10vh); opacity: 0; }
+}
+
+.firework {
+  position: absolute;
+  font-size: 30px;
+  animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+  from { transform: scale(0); opacity: 1; }
+  to { transform: scale(3); opacity: 0; }
+}
+
+audio { display:none; }
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+  <h1 class="glow">Ananya 💖</h1>
+
+  <div class="photos">
+    <img src="me.jpg" alt="Hemant">
+    <img src="ananya.jpg" alt="Ananya">
+  </div>
+
+  <p>
+    Tumhari muskurahat meri duniya hai ✨<br>
+    Har pal sirf tumhara saath chahiye 💕
+  </p>
+
+  <h2>Will you be my Valentine? 🌹</h2>
+  <p>— From Hemant 💖</p>
+
+  <button class="yes" onclick="yesClicked()">Yes 💞</button>
+  <button class="no" onclick="noClicked()">No 🙈</button>
+
+  <div id="message"></div>
+  <br>
+  <button onclick="shareWhatsApp()">Share on WhatsApp 📱</button>
+</div>
+
+<script>
+function yesClicked() {
+  document.getElementById("message").innerHTML =
+  "YAYYY 💖 Ananya, you made my heart explode with happiness 🎆<br>Happy Valentine’s Day ❤️";
+
+  for(let i=0;i<25;i++){
+    createFirework();
+  }
+}
+
+function noClicked() {
+  document.getElementById("message").innerHTML =
+  "Main phir bhi tumhe hamesha muskurata dekhna chahta hoon 😊💗";
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random()*100 + "vw";
+  heart.style.animationDuration = (Math.random()*3+4)+"s";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+}
+setInterval(createHeart,300);
+
+function createFirework(){
+  const fw = document.createElement("div");
+  fw.className="firework";
+  fw.innerHTML="🎆";
+  fw.style.left=Math.random()*100+"vw";
+  fw.style.top=Math.random()*100+"vh";
+  document.body.appendChild(fw);
+  setTimeout(()=>fw.remove(),1000);
+}
+
+function shareWhatsApp(){
+  const text="Ananya 💖 Will you be my Valentine? 🌹 From Hemant";
+  const url=encodeURIComponent(window.location.href);
+  window.open("https://wa.me/?text="+encodeURIComponent(text+" "+url));
+}
+</script>
+
+</body>
+</html>
