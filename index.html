@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Proposal - Hemant to Ananya</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            color: #e63946;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            animation: heartBeat 1.5s ease-in-out;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+        }
+
+        .heart-container {
+            margin: 30px 0;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .heart {
+            width: 80px;
+            height: 80px;
+            animation: floatHeart 3s ease-in-out infinite;
+        }
+
+        @keyframes floatHeart {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .message {
+            color: #333;
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin: 30px 0;
+            font-style: italic;
+        }
+
+        .question {
+            color: #e63946;
+            font-size: 1.8em;
+            margin: 30px 0;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .yes-btn {
+            background-color: #e63946;
+            color: white;
+            animation: buttonPulse 1.5s ease-in-out infinite;
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(230, 57, 70, 0.4);
+        }
+
+        .no-btn {
+            background-color: #999;
+            color: white;
+            position: relative;
+        }
+
+        .no-btn:hover {
+            background-color: #666;
+            left: 20px;
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .signature {
+            margin-top: 40px;
+            color: #666;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .falling-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .falling-heart {
+            position: absolute;
+            font-size: 2em;
+            animation: fall linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .success-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            z-index: 1000;
+            animation: popIn 0.5s ease-out;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-message h2 {
+            color: #e63946;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .success-message p {
+            color: #333;
+            font-size: 1.3em;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <div class="falling-hearts" id="fallingHearts"></div>
+    
+    <div class="container">
+        <h1>💕 A Special Moment 💕</h1>
+        
+        <div class="heart-container">
+            <div class="heart">❤️</div>
+        </div>
+
+        <p class="message">
+            Dear Ananya,<br><br>
+            Roses are red,<br>
+            Violets are blue,<br>
+            On this special Valentine's,<br>
+            I want to say I cherish you. 🌹<br><br>
+            Every moment with you is precious,<br>
+            and I can't imagine my life without your beautiful smile.
+        </p>
+
+        <p class="question">Will you be my Valentine? 💑</p>
+
+        <div class="buttons">
+            <button class="yes-btn" onclick="celebrate()">Yes! 💖</button>
+            <button class="no-btn" onclick="dodge()">No</button>
+        </div>
+
+        <p class="signature">
+            With all my heart,<br>
+            Hemant ❤️
+        </p>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="success-message" id="successMessage">
+        <h2>🎉 YES! 🎉</h2>
+        <p>You've made me the happiest person alive! 💕</p>
+        <p>Happy Valentine's Day, Ananya! 🌹</p>
+    </div>
+
+    <script>
+        function createFallingHearts() {
+            const fallingHeartsDiv = document.getElementById('fallingHearts');
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'falling-heart';
+                heart.textContent = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                fallingHeartsDiv.appendChild(heart);
+            }
+        }
+
+        function celebrate() {
+            const overlay = document.getElementById('overlay');
+            const successMessage = document.getElementById('successMessage');
+            overlay.style.display = 'block';
+            successMessage.style.display = 'block';
+
+            // Create extra falling hearts
+            const fallingHeartsDiv = document.getElementById('fallingHearts');
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'falling-heart';
+                heart.textContent = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                heart.style.animationDelay = Math.random() * 1 + 's';
+                fallingHeartsDiv.appendChild(heart);
+            }
+
+            // Confetti effect using emojis
+            setTimeout(() => {
+                alert('Ananya, you\'ve made Hemant the happiest! 💕\n\nHappy Valentine\'s Day!');
+            }, 3000);
+        }
+
+        function dodge() {
+            const noBtn = document.querySelector('.no-btn');
+            const randomX = Math.random() * 200 - 100;
+            const randomY = Math.random() * 200 - 100;
+            noBtn.style.position = 'relative';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        // Initialize falling hearts on page load
+        window.addEventListener('load', createFallingHearts);
+    </script>
+</body>
+</html>
